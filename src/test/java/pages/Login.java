@@ -22,6 +22,6 @@ public class Login extends BaseClass{
         inputValue(Username, userName);
         inputValue(Password, password);
         clickOn(Loginbutton);
-        return new Inventory();
+        return new Inventory(driver);
     }
 }

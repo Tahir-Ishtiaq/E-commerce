@@ -32,6 +32,7 @@ public class TestNG1 {
 
 
         Inventory inventory = login.loginUser("standard_user", "secret_sauce");
+        inventory.openItem();
     }
 
     @AfterTest
