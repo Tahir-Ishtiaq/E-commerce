@@ -36,9 +36,22 @@ public class BaseClass {
 
     public void clickOn(WebElement locator) {
         WebElement element = wait.until(ExpectedConditions.visibilityOf(locator));
-        pause(1000); // 1-second pause before clicking so you can see it
+        pause(1000);
         element.click();
+
     }
+
+    /*public void clickOn(WebElement locator) {
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        try {
+            element.click();
+        } catch (Exception e) {
+            // If Chrome popup intercepts the normal click, JavaScript will force it through
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();", element);
+        }
+        pause(1000);
+    }*/
 }
 
 

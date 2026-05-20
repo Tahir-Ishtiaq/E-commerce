@@ -24,4 +24,5 @@ public class Login extends BaseClass{
         clickOn(Loginbutton);
         return new Inventory(driver);
     }
+
 }

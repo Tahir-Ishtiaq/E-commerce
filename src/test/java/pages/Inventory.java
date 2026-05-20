@@ -9,16 +9,18 @@ public class Inventory extends BaseClass{
         super(driver);
     }
 
-    @FindBy(xpath = "//button[text()='Add to cart']")
-    WebElement Addtocart;
-
     @FindBy(xpath = "//a[@id='item_4_title_link']")
     WebElement Item;
 
+    @FindBy(xpath = "//a[@data-test='shopping-cart-link']")
+    WebElement GoToCart;
 
     public InventoryItem openItem(){
         clickOn(Item);
-        clickOn(Addtocart);
-        return new InventoryItem();
+        return new InventoryItem(driver);
+    }
+    public Cart cart(){
+        clickOn(GoToCart);
+        return new Cart(driver);
     }
 }
