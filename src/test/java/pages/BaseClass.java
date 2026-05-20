@@ -16,18 +16,17 @@ public class BaseClass {
         PageFactory.initElements(driver, this);
     }
 
-    // 1. A simple, easy-to-remember pause helper
     public void pause(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
-        } catch (Exception e) { /* Ignore errors */ }
+        } catch (Exception e) {
+            //
+        }
     }
 
     public void inputValue(WebElement locator, String input) {
         WebElement element = wait.until(ExpectedConditions.visibilityOf(locator));
         element.clear();
-
-        // 2. Simple human typing logic: Split by empty string to get letters
         for (String letter : input.split("")) {
             element.sendKeys(letter);
             pause(50); // Clean and readable pause call
@@ -41,17 +40,6 @@ public class BaseClass {
 
     }
 
-    /*public void clickOn(WebElement locator) {
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
-        try {
-            element.click();
-        } catch (Exception e) {
-            // If Chrome popup intercepts the normal click, JavaScript will force it through
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].click();", element);
-        }
-        pause(1000);
-    }*/
 }
 
 
