@@ -16,6 +16,22 @@ public class BaseClass {
         PageFactory.initElements(driver, this);
     }
 
+    private void prepareElement(WebElement element) {
+        try {
+            // 1. Highlight the element using JavaScript (gives it a red border)
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].style.border='2px solid Red'", element);
+
+            // 2. Pause for 1 second (1000 milliseconds) so human eyes can track it
+            Thread.sleep(1000);
+
+            // 3. Optional: Clear the highlight after the pause
+            js.executeScript("arguments[0].style.border=''", element);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
     public void pause(int milliseconds) {
         try {
             Thread.sleep(milliseconds);
@@ -26,6 +42,7 @@ public class BaseClass {
 
     public void inputValue(WebElement locator, String input) {
         WebElement element = wait.until(ExpectedConditions.visibilityOf(locator));
+        prepareElement(element);
         element.clear();
         for (String letter : input.split("")) {
             element.sendKeys(letter);
@@ -35,6 +52,7 @@ public class BaseClass {
 
     public void clickOn(WebElement locator) {
         WebElement element = wait.until(ExpectedConditions.visibilityOf(locator));
+        prepareElement(element);
         pause(1000);
         element.click();
 

@@ -39,7 +39,7 @@ public class TestNG1 {
         .addAndGoBack()
         .cart()
         .checkOut()
-        .checkOutOne("Tahir", "Ishtiaq", "75550")
+        .checkOutOne("Tahir", "Ishtiaq", "12345")
         .Finish()
         .backToInventory();
     }
